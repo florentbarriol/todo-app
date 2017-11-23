@@ -1,4 +1,3 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import todo from '../';
@@ -19,17 +18,17 @@ class TodoListEntry extends Component {
     render() {
 
         const chat = <FontIcon key="chat">chat</FontIcon>;
-
+        const { todo, cle } = this.props;
         return (
             <ListItemControl
                 rightIcon={chat}
                 primaryAction={
                     <Checkbox
-                        id={this.props.cle}
+                        id={cle}
                         name="todos"
-                        label={this.props.valeur.get('text')}
-                        checked={this.props.valeur.get('done')}
-                        onChange={this.onToggleClick.bind(this, this.props.cle, !this.props.valeur.get('done'))}
+                        label={todo.text}
+                        checked={todo.done}
+                        onChange={this.onToggleClick.bind(this, cle, !todo.done)}
                     />
                 }
             />
@@ -38,7 +37,7 @@ class TodoListEntry extends Component {
 }
 
 TodoListEntry.PropTypes = {
-    valeur: ImmutablePropTypes.Map,
+    todo: PropTypes.object.isRequired,
     cle: PropTypes.string.isRequired
 };
 

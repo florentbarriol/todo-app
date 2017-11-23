@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable';
 import makeActionCreator from '../../utils/actionCreators';
 import * as actionTypes from './actionTypes';
 import database from '../../database';
@@ -12,8 +11,7 @@ export function getTodos() {
     return dispatch => {
         dispatch(fetchLoadingTodo());
         return database.ref('/todos').once('value', snap => {
-            const todos = fromJS(snap.val());
-            dispatch(fetchSuccessTodo(todos));
+            dispatch(fetchSuccessTodo(snap.val()));
         }).catch((error) => {
             console.log(error);
             dispatch(fetchErrorTodo());

@@ -1,8 +1,7 @@
-import { List, fromJS } from 'immutable';
 import * as actionTypes from './actionTypes';
 
 const initialState = {
-  todos: fromJS({}),
+  todos: {},
   loading: false
 };
 
